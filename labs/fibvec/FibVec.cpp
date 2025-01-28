@@ -21,7 +21,7 @@ size_t FibVec::count() const{
 
 void FibVec::reSize(int* &array, size_t size){
 	int* array2 = new int[size];
-	for(size_t i = 0; i < cou; i++){
+	for(size_t i = 0; i <= cou; i++){
 		array2[i] = array[i];	
 	}
 
@@ -66,7 +66,7 @@ int FibVec::lookup(size_t index) const{
         try
 	{
 	if(index > cou-1){
-                throw (std::out_of_range("Range"));
+                throw (std::out_of_range("Index out of range"));
                 }
 	return array[index];
 	}
