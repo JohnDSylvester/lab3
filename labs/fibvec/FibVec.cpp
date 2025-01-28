@@ -30,7 +30,7 @@ void FibVec::reSize(int* &array, size_t size){
 	array = array2;
 
 	cap = size;
-	std::cout << "Resized to " << cap << std::endl;
+	//std::cout << "Resized to " << cap << std::endl;
 }
 
 void FibVec::push(int value){
@@ -57,7 +57,7 @@ int FibVec::pop(){
 		return val;
 	}
 	catch(const std::underflow_error& e){
-		std::cout << "Underflow\n";
+		//std::cout << "Underflow\n";
 		return -1;
 		//delete [] array;
 		//std::abort();
@@ -73,9 +73,9 @@ int FibVec::lookup(size_t index) const{
 	return array[index];
 	}
 	catch(const std::out_of_range& e){
-                std::cout << "Range\n";
-		delete [] array;
-		exit(-1);
+                //std::cout << "Range\n";
+		//delete [] array;
+		return -1;
         }
 }
 
@@ -95,8 +95,8 @@ void FibVec::insert(int value, size_t index){
                 ele++;
                 reSize(array, fibNewSize(ele));
         }
-	for(unsigned int i = cou; i >= index; i--){
-		array[i+1] = array[i];
+	for(unsigned int i = cou; i > index; i--){
+		array[i] = array[i-1];
 	}
 	array[index] = value;
 
@@ -108,20 +108,20 @@ int FibVec::remove(size_t index){
                 if(cou <= 0){
                 throw (std::underflow_error("Underflow"));
                 }
-		int val = array[int(cou)];
+                int val = array[int(index)];
                 cou--;
                 if(cou < fibNewSize(ele-2)){
                         ele--;
                         reSize(array, fibNewSize(ele));
                 }
-		for(unsigned int i = index; i <= cou; i++){
+                for(unsigned int i = index; i < cou; i++){
                 array[i] = array[i+1];
         }
-		return val;
+                return val;
         }
         catch(const std::underflow_error& e){
-                std::cout << "Underflow\n";
-		//delete [] array;
-		return -1;
+                //std::cout << "Underflow\n";
+                //delete [] array;
+                return -1;
         }
 }
