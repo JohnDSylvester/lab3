@@ -108,9 +108,7 @@ int FibVec::remove(size_t index){
                 throw (std::underflow_error("Underflow"));
                 }
                 int val = array[int(index)];
-		cou--;
-                if(cou < fibNewSize(ele-2)){
-			cou++;
+                if(cou-1 < fibNewSize(ele-2)){
                         ele--;
                         reSize(array, fibNewSize(ele));
                 }
