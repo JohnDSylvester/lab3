@@ -21,7 +21,7 @@ size_t FibVec::count() const{
 
 void FibVec::reSize(int* &array, size_t size){
 	int* array2 = new int[size];
-	for(size_t i = 0; i <= cou; i++){
+	for(size_t i = 0; i < cou; i++){
 		array2[i] = array[i];	
 	}
 
@@ -108,11 +108,11 @@ int FibVec::remove(size_t index){
                 throw (std::underflow_error("Underflow"));
                 }
                 int val = array[int(index)];
-                cou--;
                 if(cou < fibNewSize(ele-2)){
                         ele--;
                         reSize(array, fibNewSize(ele));
                 }
+		cou--;
                 for(unsigned int i = index; i < cou; i++){
                 array[i] = array[i+1];
         }
