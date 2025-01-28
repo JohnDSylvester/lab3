@@ -57,10 +57,8 @@ int FibVec::pop(){
 		return val;
 	}
 	catch(const std::underflow_error& e){
-		//std::cout << "Underflow\n";
-		return -1;
-		//delete [] array;
-		//std::abort();
+		std::cout << "Underflow.\n";
+		exit(1);
 	}
 }
 
@@ -73,9 +71,8 @@ int FibVec::lookup(size_t index) const{
 	return array[index];
 	}
 	catch(const std::out_of_range& e){
-                //std::cout << "Range\n";
-		//delete [] array;
-		return -1;
+                std::cout << "Index out of range.";
+		exit(1);
         }
 }
 
@@ -122,8 +119,7 @@ int FibVec::remove(size_t index){
                 return val;
         }
         catch(const std::underflow_error& e){
-                //std::cout << "Underflow\n";
-                //delete [] array;
-                return -1;
+                std::cout << "Underflow.\n";
+                exit(1);
         }
 }
