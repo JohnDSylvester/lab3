@@ -95,10 +95,12 @@ void FibVec::insert(int value, size_t index){
                 ele++;
                 reSize(array, fibNewSize(ele));
         }
-	for(unsigned int i = cou; i > index; i--){
-		array[i] = array[i-1];
-	}
-	array[index] = value;
+        if(cou != 0){
+        for(unsigned int i = cou; i > index; i--){
+                array[i] = array[i-1];
+        }
+        }
+        array[index] = value;
 
         cou++;
 }
