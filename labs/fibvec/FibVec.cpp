@@ -56,7 +56,7 @@ int FibVec::pop(){
 	}
 
 int FibVec::lookup(size_t index) const{
-	if(index > cou-1){
+	if(index > cou-1 || cou == 0){
                 throw (std::out_of_range("Index out of range."));
                 }
 	return array[index];
