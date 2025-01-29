@@ -74,7 +74,7 @@ FibVec::~FibVec(){
 }
 
 void FibVec::insert(int value, size_t index){
-	if(index > cou-1){
+	if(index > cou){
                 throw (std::out_of_range("Index out of range."));
         }
         if(cou == cap){
