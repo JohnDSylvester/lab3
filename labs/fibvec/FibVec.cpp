@@ -91,7 +91,7 @@ void FibVec::insert(int value, size_t index){
 }
 
 int FibVec::remove(size_t index){
-		if(index > cou-1){
+		if(index > cou-1 || cou == 0){
                 throw (std::out_of_range("Index out of range."));
                 }
 	
