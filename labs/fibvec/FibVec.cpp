@@ -4,21 +4,6 @@
 #include <stdexcept>
 
 // FibVec Function Implementations
-size_t FibVec::fibNewSize(int element){
-	if(element >= 2){
-		return fibNewSize(element - 1) + fibNewSize(element -2);
-	}
-	return element;
-}
-
-size_t FibVec::capacity() const{
-	return cap;
-}
-
-size_t FibVec::count() const{
-        return cou;
-}
-
 void FibVec::reSize(int* &array, size_t size){
 	int* array2 = new int[size];
 	for(size_t i = 0; i < cou; i++){
@@ -32,34 +17,11 @@ void FibVec::reSize(int* &array, size_t size){
 	cap = size;
 }
 
-void FibVec::push(int value){
-	if(cou == cap){
-		ele++;
-		reSize(array, fibNewSize(ele));
+size_t FibVec::fibNewSize(int element){
+	if(element >= 2){
+		return fibNewSize(element - 1) + fibNewSize(element -2);
 	}
-
-	array[int(cou)] = value;
-	cou++;
-}
-
-int FibVec::pop(){
-		if(cou <= 0){
-		throw (std::underflow_error("Underflow."));
-		}
-		int val = array[int(cou-1)];
-		cou--;
-		if(cou < fibNewSize(ele-2)){
-                	ele--;
-                	reSize(array, fibNewSize(ele));
-        	}
-		return val;
-	}
-
-int FibVec::lookup(size_t index) const{
-	if(index > cou-1 || cou == 0){
-                throw (std::out_of_range("Index out of range."));
-                }
-	return array[index];
+	return element;
 }
 
 FibVec::FibVec(){
@@ -71,6 +33,14 @@ FibVec::FibVec(){
 }
 FibVec::~FibVec(){
 	delete [] array;
+}
+
+size_t FibVec::capacity() const{
+	return cap;
+}
+
+size_t FibVec::count() const{
+        return cou;
 }
 
 void FibVec::insert(int value, size_t index){
@@ -88,6 +58,36 @@ void FibVec::insert(int value, size_t index){
         }
         array[index] = value;
         cou++;
+}
+
+int FibVec::lookup(size_t index) const{
+	if(index > cou-1 || cou == 0){
+                throw (std::out_of_range("Index out of range."));
+                }
+	return array[index];
+}
+
+int FibVec::pop(){
+	if(cou <= 0){
+		throw (std::underflow_error("Underflow."));
+	}
+	int val = array[int(cou-1)];
+	cou--;
+	if(cou < fibNewSize(ele-2)){
+                ele--;
+                reSize(array, fibNewSize(ele));
+        }
+	return val;
+}
+
+void FibVec::push(int value){
+	if(cou == cap){
+		ele++;
+		reSize(array, fibNewSize(ele));
+	}
+
+	array[int(cou)] = value;
+	cou++;
 }
 
 int FibVec::remove(size_t index){
