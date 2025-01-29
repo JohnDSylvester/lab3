@@ -56,7 +56,7 @@ int FibVec::pop(){
 	}
 
 int FibVec::lookup(size_t index) const{
-	if(index > cou-1 || index < 0){
+	if(index > cou-1){
                 throw (std::out_of_range("Index out of range."));
                 }
 	return array[index];
@@ -74,7 +74,7 @@ FibVec::~FibVec(){
 }
 
 void FibVec::insert(int value, size_t index){
-	if(index > cou-1 || index < 0){
+	if(index > cou-1){
                 throw (std::out_of_range("Index out of range."));
         }
         if(cou == cap){
@@ -94,7 +94,7 @@ int FibVec::remove(size_t index){
                 if(cou <= 0){
                 throw (std::underflow_error("Underflow."));
                 }
-		if(index > cou-1 || index < 0){
+		if(index > cou-1){
                 throw (std::out_of_range("Index out of range."));
                 }
 	
