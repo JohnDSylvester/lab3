@@ -30,7 +30,6 @@ void FibVec::reSize(int* &array, size_t size){
 	array = array2;
 
 	cap = size;
-	//std::cout << "Resized to " << cap << std::endl;
 }
 
 void FibVec::push(int value){
@@ -45,7 +44,7 @@ void FibVec::push(int value){
 
 int FibVec::pop(){
 		if(cou <= 0){
-		throw (std::underflow_error("Underflow"));
+		throw (std::underflow_error("Underflow."));
 		}
 		int val = array[int(cou-1)];
 		cou--;
@@ -93,7 +92,7 @@ void FibVec::insert(int value, size_t index){
 
 int FibVec::remove(size_t index){
                 if(cou <= 0){
-                throw (std::underflow_error("Underflow"));
+                throw (std::underflow_error("Underflow."));
                 }
 		if(index > cou-1 || index < 0){
                 throw (std::out_of_range("Index out of range."));
