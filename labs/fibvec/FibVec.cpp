@@ -91,9 +91,6 @@ void FibVec::insert(int value, size_t index){
 }
 
 int FibVec::remove(size_t index){
-                if(cou <= 0){
-                throw (std::underflow_error("Underflow."));
-                }
 		if(index > cou-1){
                 throw (std::out_of_range("Index out of range."));
                 }
