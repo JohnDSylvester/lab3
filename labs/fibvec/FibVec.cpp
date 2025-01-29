@@ -44,7 +44,6 @@ void FibVec::push(int value){
 }
 
 int FibVec::pop(){
-	try{
 		if(cou <= 0){
 		throw (std::underflow_error("Underflow"));
 		}
@@ -56,24 +55,12 @@ int FibVec::pop(){
         	}
 		return val;
 	}
-	catch(const std::underflow_error& e){
-		std::cout << "Underflow.\n";
-		exit(1);
-	}
-}
 
 int FibVec::lookup(size_t index) const{
-        try
-	{
-	if(index > cou-1){
-                throw (std::out_of_range("Index out of range"));
+	if(index > cou-1 || index < 0){
+                throw (std::out_of_range("Index out of range."));
                 }
 	return array[index];
-	}
-	catch(const std::out_of_range& e){
-                std::cout << "Index out of range.";
-		exit(1);
-        }
 }
 
 FibVec::FibVec(){
@@ -88,6 +75,9 @@ FibVec::~FibVec(){
 }
 
 void FibVec::insert(int value, size_t index){
+	if(index > cou-1 || index < 0){
+                throw (std::out_of_range("Index out of range."));
+        }
         if(cou == cap){
                 ele++;
                 reSize(array, fibNewSize(ele));
@@ -98,15 +88,17 @@ void FibVec::insert(int value, size_t index){
         }
         }
         array[index] = value;
-
         cou++;
 }
 
 int FibVec::remove(size_t index){
-        try{
                 if(cou <= 0){
                 throw (std::underflow_error("Underflow"));
                 }
+		if(index > cou-1 || index < 0){
+                throw (std::out_of_range("Index out of range."));
+                }
+	
                 int val = array[int(index)];
                 if(cou-1 < fibNewSize(ele-2)){
                         ele--;
@@ -117,9 +109,4 @@ int FibVec::remove(size_t index){
                 array[i] = array[i+1];
         }
                 return val;
-        }
-        catch(const std::underflow_error& e){
-                std::cout << "Underflow.\n";
-                exit(1);
-        }
 }
